@@ -40,7 +40,7 @@ public class OperateurTest{
         int expected=operateurs.size();
         Operateur o = new Operateur();
         o.setNom("test");
-        o.setPrenom("test2");
+        o.setPrenom("testttttt2");
         o.setPassword("test3");
         Operateur savedOperateur= operateurService.addOperateur(o);
         assertEquals(expected+1, operateurService.retrieveAllOperateurs().size());
