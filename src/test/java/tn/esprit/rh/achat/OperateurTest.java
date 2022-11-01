@@ -56,4 +56,5 @@ public class OperateurTest{
         assertNotNull(operateur);
         log.info("get operateur"+operateur.toString());
     }
-}*/
+}
+*/
