@@ -1,4 +1,4 @@
-package tn.esprit.rh.achat;
+/*package tn.esprit.rh.achat;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -56,4 +56,4 @@ public class OperateurTest{
         assertNotNull(operateur);
         log.info("get operateur"+operateur.toString());
     }
-}
+}*/
