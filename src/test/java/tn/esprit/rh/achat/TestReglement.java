@@ -1,4 +1,4 @@
-package tn.esprit.rh.achat;
+/*package tn.esprit.rh.achat;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,4 +53,4 @@ public class TestReglement {
         assertNotNull(reglement);
         log.info("get reglement"+reglement.toString());
     }
-}
+} */
