@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.5.3</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath />
 	</parent>
 	<groupId>tn.esprit.rh</groupId>
 	<artifactId>achat</artifactId>
@@ -88,15 +88,10 @@
 		</plugins>
 	</build>
 	<distributionManagement>
-		<snapshotRepository>
-			<id>nexus-snapshots</id>
-			<url>http://192.168.1.138:8081/repository/maven-snapshots/</url>
-		</snapshotRepository>
 		<repository>
-			<id>nexus-releases</id>
-			<url>http://192.168.1.138:8081/repository/maven-releases/</url>
+			<id>deploymentRepo</id>
+			<name>Nexus Repository</name>
+			<url>http://192.168.1.22:8081/repository/maven-releases</url>
 		</repository>
 	</distributionManagement>
-
-
 </project>
