@@ -14,6 +14,15 @@ pipeline {
             steps {
                 sh 'mvn deploy -DskipTests'
       }
-    }  
+    }
+
+	stage('Sonar') {
+            steps {
+        	withSonarQubeEnv('sonarQubeServ') { 
+        		sh "mvn sonar:sonar"
+    		}
+            }
+        }
+      
     }
 }
