@@ -6,6 +6,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
+@EnableSwagger2
 public class AchatApplication {
 
     public static void main(String[] args) {
