@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage ("Git Checkout"){
             steps{
-            git branch: 'yesmine-Branch', 
+            git branch: 'yesmine-Branche', 
             url: 'https://github.com/safa-kaabi/Devops-Education.git'
             }
         
