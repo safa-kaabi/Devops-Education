@@ -9,25 +9,14 @@ pipeline{
       stage(' GIT ') {
             steps {
                 echo 'Pulliing ...';
-                git branch: 'ranim-test', url: 'https://github.com/safa-kaabi/Devops-Education.git'          
+                git branch: 'ranime', url: 'https://github.com/safa-kaabi/Devops-Education.git'          
             }
         }
-        stage('maven install PROJECT') {
-            steps{
-                sh "mvn clean install  " 
-            }
-        }
-	stage('Compile PROJECT') {
-            steps{
-                sh "mvn compile -DskipTests" 
-            }
-        }
-	stage('CLEANING THE PROJECT') {
+        stage('CLEANING THE PROJECT') {
             steps{
                 sh "mvn -B -DskipTests clean  " 
             }
         }
-
         stage('ARTIFACT CONSTRUCTION') {
             steps{
                 sh "mvn -B -DskipTests package " 
@@ -39,6 +28,11 @@ echo "Maven Test JUnit";
 /*sh 'mvn test';*/
 }
 }
+stage('compile project') {
+             steps {
+                sh 'mvn compile -DskipTests'
+      }
+        }
         stage('SONAR') {
             steps{
                 sh "mvn sonar:sonar -Dsonar.projectKey=ranim -Dsonar.host.url=http://192.168.1.17:9000 -Dsonar.login=524d68ac4e7bbd373f5c6e6d559cd1a20f4d6300 "
@@ -71,9 +65,7 @@ echo "Maven Test JUnit";
                 sh 'docker-compose up -d '
                 sh 'docker-compose ps'
       }
-
-        
+        }
     }
    
-}
 }
