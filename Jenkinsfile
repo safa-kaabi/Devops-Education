@@ -9,7 +9,7 @@ pipeline{
       stage(' GIT ') {
             steps {
                 echo 'Pulliing ...';
-                git branch: 'ranime', url: 'https://github.com/safa-kaabi/Devops-Education.git'          
+                git branch: 'ranim-test', url: 'https://github.com/safa-kaabi/Devops-Education.git'          
             }
         }
         stage('CLEANING THE PROJECT') {
