@@ -14,9 +14,20 @@ pipeline{
         }
         stage('CLEANING THE PROJECT') {
             steps{
+                sh "mvn clean install  " 
+            }
+        }
+	stage('Compile PROJECT') {
+            steps{
+                sh "mvn compile -DskipTests" 
+            }
+        }
+	stage('CLEANING THE PROJECT') {
+            steps{
                 sh "mvn -B -DskipTests clean  " 
             }
         }
+
         stage('ARTIFACT CONSTRUCTION') {
             steps{
                 sh "mvn -B -DskipTests package " 
@@ -60,6 +71,7 @@ echo "Maven Test JUnit";
                 sh 'docker-compose up -d '
                 sh 'docker-compose ps'
       }
+
         }
     }
    
