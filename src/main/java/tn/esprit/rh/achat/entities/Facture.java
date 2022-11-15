@@ -22,6 +22,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Facture implements Serializable {
 	private static final long serialVersionUID = 1L;
 
