@@ -9,7 +9,7 @@ pipeline {
         stage ('GIT') {
             steps {
                echo "Getting Project from Git"; 
-                git branch: "shili", url: "https://github.com/DevopsTeamGroupe2/devops_project_2";
+                git branch: "NegraMed2", url: "https://github.com/safa-kaabi/Devops-Education";
             }
         }
         stage('Unit Testing : Test Dynamique Junit and  Mockito'){
@@ -32,14 +32,14 @@ pipeline {
 
         stage("Build Docker image") {
             steps {
-                sh "sudo docker build -t ahmedshili/tpachat .";
+                sh "sudo docker build -t NegraMed/tpachat .";
             }
         }
 
         stage("Push Docker image to nexus Private Repo") {
             steps {
                 sh "sudo docker login -u admin -p nexus 192.168.1.100:8082/repository/docker-hosted-validation";
-                sh "sudo docker tag ahmedshili/tpachat 192.168.1.100:8082/docker-hosted-validation/validation";
+                sh "sudo docker tag NegraMed/tpachat 192.168.1.100:8082/docker-hosted-validation/validation";
                 sh "sudo docker push 192.168.1.100:8082/docker-hosted-validation/validation";
             }
         }
