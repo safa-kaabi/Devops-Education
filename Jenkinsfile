@@ -12,7 +12,7 @@ pipeline{
                 git branch: 'ranim-test', url: 'https://github.com/safa-kaabi/Devops-Education.git'          
             }
         }
-        stage('CLEANING THE PROJECT') {
+        stage('maven install PROJECT') {
             steps{
                 sh "mvn clean install  " 
             }
@@ -72,7 +72,8 @@ echo "Maven Test JUnit";
                 sh 'docker-compose ps'
       }
 
-        }
+        
     }
    
+}
 }
