@@ -1,27 +1,24 @@
-/*package tn.esprit.rh.achat;
+package com.esprit.examen.services;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.esprit.examen.entities.Operateur;
+import com.esprit.examen.repositories.OperateurRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import lombok.extern.slf4j.Slf4j;
-import tn.esprit.rh.achat.entities.Operateur;
-import tn.esprit.rh.achat.repositories.OperateurRepository;
-import tn.esprit.rh.achat.services.IOperateurService;
-import tn.esprit.rh.achat.services.OperateurServiceImpl;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 import java.util.Optional;
 
-@RunWith(SpringRunner.class)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Slf4j
 public class OperateurTest{
@@ -32,7 +29,7 @@ public class OperateurTest{
     @Autowired
     IOperateurService operateurService;
 
-    Operateur op = new Operateur("mmmm", "erere", "zezeze");
+    Operateur op = Operateur.builder().nom("aaa").prenom("bbbb").password("eeee").build();
 
     @Test
     public void testAddOperateur() {
@@ -45,7 +42,7 @@ public class OperateurTest{
         Operateur savedOperateur= operateurService.addOperateur(o);
         assertEquals(expected+1, operateurService.retrieveAllOperateurs().size());
         assertNotNull(savedOperateur.getNom());
-        //operateurService.deleteOperateur(savedOperateur.getIdOperateur());
+        operateurService.deleteOperateur(savedOperateur.getIdOperateur());
     }
 
 
@@ -54,6 +51,6 @@ public class OperateurTest{
         Mockito.when(operateurRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(op));
         Operateur operateur = operateurServiceImp.retrieveOperateur((long) 1);
         assertNotNull(operateur);
-        log.info("get operateur"+operateur.toString());
+        log.info("get operateur"+operateur);
     }
-}*/
+}

@@ -39,7 +39,7 @@ public class SpringFoxSwaggerConfig {
     private ApiInfo apiEndPointsInfo() {
         return new ApiInfoBuilder()
                 .title("My STOCK PROJECT")
-                .description("Micro-Service Documentation by Ahmed")
+                .description("Micro-Service Documentation")
                 .version("1.0.0")
                 .build();
     }
