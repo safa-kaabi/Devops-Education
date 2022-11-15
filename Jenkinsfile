@@ -45,8 +45,7 @@ echo "Maven Test JUnit";
            emailext body: 'your pipeline was successfully built ! everything is good  ', subject: 'build done', to: 'ranim.benafia@esprit.tn'
         }
     }
-    }
-    stage('Docker Build and Push') {
+	     stage('Docker Build and Push') {
        steps {
          withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
            
@@ -62,4 +61,6 @@ echo "Maven Test JUnit";
                 sh 'docker-compose ps'
       }
         }
+    }
+   
 }
