@@ -1,4 +1,4 @@
 FROM openjdk:8-jre-alpine
-COPY target/achat-3.0.jar achat-3.0.jar
+COPY target/achat-4.0.jar achat-4.0.jar
 EXPOSE 8089
-ENTRYPOINT ["java", "-jar", "achat-3.0.jar"]
+ENTRYPOINT ["java", "-jar", "achat-4.0.jar"]
