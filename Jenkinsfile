@@ -46,5 +46,20 @@ echo "Maven Test JUnit";
         }
     }
     }
-    
+    stage('Docker Build and Push') {
+       steps {
+         withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
+           
+           sh 'docker build -t rranim/devops:latest .'
+           sh 'docker push rranim/devops:latest'
+         }
+       }
+     }   
+	    stage('Start container') {
+             steps {
+                sh 'docker-compose -v'
+                sh 'docker-compose up -d '
+                sh 'docker-compose ps'
+      }
+        }
 }
