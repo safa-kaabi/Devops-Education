@@ -9,10 +9,10 @@ pipeline {
         stage ('GIT') {
             steps {
                echo "Getting Project from Git"; 
-                git branch: "shili", url: "https://github.com/DevopsTeamGroupe2/devops_project_2";
+                git branch: "safa_branch", url: "hhttps://github.com/safa-kaabi/Devops-Education.git";
             }
         }
-        stage('Unit Testing : Test Dynamique Junit and  Mockito'){
+        stage('Unit Testing : Test Dynamique '){
             steps {
                 sh "mvn clean test -Ptest";
             }
@@ -32,15 +32,15 @@ pipeline {
 
         stage("Build Docker image") {
             steps {
-                sh "sudo docker build -t ahmedshili/tpachat .";
+                sh "sudo docker build -t SafaKaabi/tpachat .";
             }
         }
 
         stage("Push Docker image to nexus Private Repo") {
             steps {
-                sh "sudo docker login -u admin -p nexus 192.168.1.100:8082/repository/docker-hosted-validation";
-                sh "sudo docker tag ahmedshili/tpachat 192.168.1.100:8082/docker-hosted-validation/validation";
-                sh "sudo docker push 192.168.1.100:8082/docker-hosted-validation/validation";
+                sh "sudo docker login -u admin -p nexus 192.168.1.220:8082/repository/docker-hosted-validation";
+                sh "sudo docker tag SafaKaabi/tpachat 192.168.1.220:8082/docker-hosted-validation/validation";
+                sh "sudo docker push 192.168.1.220:8082/docker-hosted-validation/validation";
             }
         }
         
@@ -52,14 +52,14 @@ pipeline {
 
         stage("Build Docker image from nexus repo") {
             steps {
-                sh "sudo docker pull 192.168.1.100:8082/docker-hosted-validation/validation";
+                sh "sudo docker pull 192.168.1.220:8082/docker-hosted-validation/validation";
             }
         }
         
         stage('Deploy Image to DockerHub') {
             steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin';
-                sh 'sudo docker push ahmedshili/tpachat';
+                sh 'sudo docker push SafaKaabi/tpachat';
             }
         }
 
