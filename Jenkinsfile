@@ -12,7 +12,7 @@ pipeline {
                 echo 'Pulliing ...';
                 git branch: 'mayssaBranch', url: 'https://github.com/safa-kaabi/Devops-Education.git'          
             }
-        }*/
+        }
         stage('Build') { 
             steps { 
                 sh 'mvn -version'
@@ -66,4 +66,6 @@ pipeline {
 	
       
     }
+}
+
 }
