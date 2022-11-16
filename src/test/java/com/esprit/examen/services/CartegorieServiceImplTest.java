@@ -31,7 +31,7 @@ public class CartegorieServiceImplTest {
 	ICategorieProduitService categorieProduitService;
 	
 	@Test
-	@Order(1)
+	
 	public void testAddCategorie() throws ParseException {
 		CategorieProduit cat = new CategorieProduit();
 		cat.setCodeCategorie("CAT1");
@@ -43,7 +43,7 @@ public class CartegorieServiceImplTest {
 	}
 	
 	@Test
-	@Order(2)
+	
 	public void testModifierCategorie() throws ParseException {
 		CategorieProduit cat = new CategorieProduit();
 		cat.setCodeCategorie("CAT2");
@@ -59,7 +59,7 @@ public class CartegorieServiceImplTest {
 	}
 	
 	@Test
-	@Order(3)
+	
 	public void testRetrieveAllCategorie() throws ParseException {
 		List<CategorieProduit> listCategorie = categorieProduitService.retrieveAllCategorieProduits();
 		Assertions.assertNotEquals(0, listCategorie.size());
@@ -70,7 +70,7 @@ public class CartegorieServiceImplTest {
 	}
 	
 	@Test
-	@Order(4)
+	
 	public void testDeleteCategorie() throws ParseException {
 		CategorieProduit cat = new CategorieProduit();
 		cat.setCodeCategorie("CAT2");
