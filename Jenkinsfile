@@ -33,6 +33,7 @@ pipeline {
                 sh "sudo docker build -t negramed/tpachat .";
             }
         }
+        /*
         
         stage("Push Docker image to nexus Private Repo") {
             steps {
@@ -40,20 +41,20 @@ pipeline {
                 sh "sudo docker tag NegraMed/tpachat 192.168.110.50:8082/docker-hosted-validation/validation";
                 sh "sudo docker push 192.168.110.50:8082/docker-hosted-validation/validation";
             }
-        }
+        }*/
         
         stage('Deploy Artifact to Nexus') {
             steps {
                 sh 'mvn deploy -Dmaven.test.skip=true -Pprod'
             }
         }
-
+    /*
         stage("Build Docker image from nexus repo") {
             steps {
                 sh "sudo docker pull 192.168.110.50:8082/docker-hosted-validation/validation";
             }
         }
-        
+        */
        
 
         stage("Start Containers : with docker compose") {
