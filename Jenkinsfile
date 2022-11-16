@@ -51,6 +51,7 @@ pipeline {
 
         stage("Start Containers : with docker compose") {
             steps {
+		sh "sudo docker stop bcb7ca6fc9368214741945927fc10084e69ef20784b48edbf4d26cf5116a748a";
 		sh "sudo docker rm bcb7ca6fc9368214741945927fc10084e69ef20784b48edbf4d26cf5116a748a";
                 sh "sudo docker compose up -d";
             }
