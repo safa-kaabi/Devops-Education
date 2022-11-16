@@ -7,7 +7,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS=credentials('dockerHUBServ')
     }
     stages {
-        /*stage(' GIT ') {
+        stage(' GIT ') {
             steps {
                 echo 'Pulliing ...';
                 git branch: 'mayssaBranch', url: 'https://github.com/safa-kaabi/Devops-Education.git'          
@@ -19,7 +19,7 @@ pipeline {
 		sh 'mvn clean package' 
             }
         }
-        /*stage ("Launching unit tests"){
+        stage ("Launching unit tests"){
  			steps{
  			    echo 'Testing..'
  				sh "mvn test"
@@ -55,7 +55,7 @@ pipeline {
                  sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
                  sh 'docker push mayssachaouali/achat'
                  }
-	}*/
+	
 		stage('Run Docker-compose') {
                 steps {
                   	sh "docker-compose up -d"
