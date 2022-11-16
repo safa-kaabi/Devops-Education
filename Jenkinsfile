@@ -38,6 +38,12 @@ pipeline {
                 sh 'mvn deploy -DskipTests'
       }
     }
+
+    stage('EMAIL ALERT') {
+        steps{
+           emailext body: 'your pipeline was successfully built ! everything is good  ', subject: 'build done', to: 'mayssa.chaouali@esprit.tn'
+        }
+    }
      		stage('Building Docker Image'){
  			  steps {
                       sh 'docker build -t mayssachaouali/achat .'
