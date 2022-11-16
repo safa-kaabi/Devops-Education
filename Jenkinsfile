@@ -7,6 +7,12 @@ pipeline {
         DOCKERHUB_CREDENTIALS=credentials('dockerHUBServ')
     }
     stages {
+        stage(' GIT ') {
+            steps {
+                echo 'Pulliing ...';
+                git branch: 'mayssaBranch', url: 'https://github.com/safa-kaabi/Devops-Education.git'          
+            }
+        }
         stage('Build') { 
             steps { 
                 sh 'mvn -version'
