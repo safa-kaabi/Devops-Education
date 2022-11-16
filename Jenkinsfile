@@ -53,7 +53,7 @@ pipeline {
             steps {
                 sh "sudo docker pull 192.168.110.50:8082/docker-hosted-validation/validation";
             }
-        }
+        }*/
         
        
     
