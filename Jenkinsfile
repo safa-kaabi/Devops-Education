@@ -1,7 +1,9 @@
 pipeline {
 
     agent { label 'maven' }
-    
+    environment{ 
+        DOCKERHUB_CREDENTIALS=credentials('docker')
+    }
 
     stages {
         stage ('GIT') {
@@ -27,12 +29,6 @@ pipeline {
                 sh "mvn clean package -Pprod";
             }
         }
-
-        stage("Build Docker image") {
-            steps {
-                sh "sudo docker build -t negramed/tpachat .";
-            }
-        }
         /*
         
         stage("Push Docker image to nexus Private Repo") {
@@ -42,10 +38,21 @@ pipeline {
                 sh "sudo docker push 192.168.110.50:8082/docker-hosted-validation/validation";
             }
         }*/
-        
         stage('Deploy Artifact to Nexus') {
             steps {
                 sh 'mvn deploy -Dmaven.test.skip=true -Pprod'
+            }
+        }
+        
+        stage("Build Docker image") {
+            steps {
+                sh "sudo docker build -t negramed/tpachat .";
+            }
+        }
+        stage('Deploy Image to DockerHub') {
+            steps {
+		        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin';
+                sh 'sudo docker push negramed/tpachat';
             }
         }
     /*
