@@ -51,8 +51,8 @@ pipeline {
 
         stage("Docker compose") {
             steps {
-		sh "sudo docker stop mysqldb tpachat";
-		sh "sudo docker rm mysqldb tpachat";
+		//sh "sudo docker stop mysqldb tpachat";
+		//sh "sudo docker rm mysqldb tpachat";
                 sh "sudo docker compose up -d";
             	sh "sudo docker ps";
 	    }
