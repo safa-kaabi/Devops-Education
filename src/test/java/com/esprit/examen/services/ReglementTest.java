@@ -1,4 +1,4 @@
-package com.esprit.examen.services;
+/*package com.esprit.examen.services;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -52,4 +52,4 @@ public class ReglementTest{
         assertNotNull(reglement);
         log.info("get reglement"+reglement.toString());
     }
-}
+}*/
