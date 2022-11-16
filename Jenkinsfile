@@ -53,7 +53,7 @@ pipeline {
         stage('Deploy Image to DockerHub') {
             steps {
 		sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin';
-                sh 'sudo docker push negramed0011/tpachat';
+                sh 'sudo docker push negramed0011/tpachat:tagnamex';
             }
         }
     /*
@@ -75,12 +75,12 @@ pipeline {
             steps {
                 sh "sudo docker compose down";
             }
-        }*/
+        }
 	stage("Send Email Notification") {
             steps {
                 emailext body: '$DEFAULT_CONTENT', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: '$DEFAULT_SUBJECT'
             }
-        }  
+        }*/  
         
     }
 	
