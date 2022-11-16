@@ -30,7 +30,7 @@ pipeline {
 
         stage("Build Docker image") {
             steps {
-                sh "sudo docker build -t NegraMed/tpachat .";
+                sh "sudo docker build -t negramed/tpachat .";
             }
         }
         /*
