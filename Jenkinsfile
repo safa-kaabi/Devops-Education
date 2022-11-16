@@ -54,9 +54,9 @@ pipeline {
                 sh "sudo docker pull 192.168.110.50:8082/docker-hosted-validation/validation";
             }
         }
-        */
+        
        
-
+    
         stage("Start Containers : with docker compose") {
             steps {
                 sh "sudo docker compose up -d";
