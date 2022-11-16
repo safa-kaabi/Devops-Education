@@ -38,9 +38,9 @@ pipeline {
 
         stage("Push Docker image to nexus Private Repo") {
             steps {
-                sh "sudo docker login -u admin -p nexus 192.168.1.220:8082/repository/docker-hosted-validation";
-                sh "sudo docker tag safakaabi/tpachat 192.168.1.220:8082/docker-hosted-validation/validation";
-                sh "sudo docker push 192.168.1.220:8082/docker-hosted-validation/validation";
+                sh "sudo docker login -u admin -p nexus 192.168.1.100:8082/repository/docker-hosted-validation";
+                sh "sudo docker tag safakaabi/tpachat 192.168.1.100:8082/docker-hosted-validation/validation";
+                sh "sudo docker push 192.168.1.100:8082/docker-hosted-validation/validation";
             }
         }
         
