@@ -71,9 +71,8 @@ pipeline {
     }
     post {
         always {
-	      mail to: 'safa.kaabi@esprit.tn',
-             subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
-             body: "${env.BUILD_URL} has result ${currentBuild.result}
+	      mail to: 'safa.kaabi@esprit.tn',subject: "Status of pipeline: ${currentBuild.fullDisplayName}",body: "${env.BUILD_URL} has result ${currentBuild.result}
+	     cleanWs()
         }
     }
 }
