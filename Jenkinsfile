@@ -9,7 +9,7 @@ pipeline {
         stage ('GIT') {
             steps {
                echo "Getting Project from Git"; 
-                git branch: "safa_branch", url: "hhttps://github.com/safa-kaabi/Devops-Education.git";
+                git branch: "safa_branch", url: "https://github.com/safa-kaabi/Devops-Education.git";
             }
         }
         stage('Unit Testing : Test Dynamique '){
