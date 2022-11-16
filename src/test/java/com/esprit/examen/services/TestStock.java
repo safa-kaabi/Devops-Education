@@ -79,19 +79,19 @@ public class TestStock {
          assertNotNull(stock1);
          assertEquals(stock1, stockService.addStock(stock1));
      }
-
-     @Test
+    @Test
+    public void UpdateStockTestMockito() {
+        when(stockRepository.save(stock1)).thenReturn(stock1);
+        assertNotNull(stock1);
+        assertEquals(stock1, stockService.updateStock(stock1));
+    }
+    @Test
      public void DeleteStockTestMockito() {
-         stockRepository.save(stock1);
+         stock1 = stockRepository.save(stock1);
          stockService.deleteStock(stock1.getIdStock());
          verify(stockRepository, times(1)).deleteById(stock1.getIdStock());
      }
-     @Test
-     public void UpdateStockTestMockito() {
-         when(stockRepository.save(stock1)).thenReturn(stock1);
-         assertNotNull(stock1);
-         assertEquals(stock1, stockService.updateStock(stock1));
-     }
+
 }
 
 
