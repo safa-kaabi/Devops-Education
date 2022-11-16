@@ -52,7 +52,7 @@ pipeline {
 
         stage("Build Docker image from nexus repo") {
             steps {
-                sh "sudo docker pull 192.168.1.220:8082/docker-hosted-validation/validation";
+                sh "sudo docker pull 192.168.1.100:8082/docker-hosted-validation/validation";
             }
         }
         
