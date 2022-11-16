@@ -62,7 +62,7 @@ pipeline {
         stage("Build our Image") {
           steps {
           
-              sh 'docker build -t yesminebenmustapha/spring:$BUILD_NUMBER .'
+              sh 'docker build -t yesminebenmustapha/validation:$BUILD_NUMBER .'
               
              }
        }
@@ -73,7 +73,7 @@ pipeline {
                     
                     withCredentials([string(credentialsId: 'DockerId', variable: 'Docker')]) {
                         sh 'docker login -u yesminebenmustapha -p ${Docker}'
-                        sh 'docker image push yesminebenmustapha/spring:$BUILD_NUMBER'
+                        sh 'docker image push yesminebenmustapha/validation:$BUILD_NUMBER'
                 }
             } 
             }

@@ -1,7 +1,5 @@
-FROM openjdk:14-alpine
-RUN mkdir app
-WORKDIR /app
-COPY /target/achat-1.0.0-SNAPSHOT.jar achat-1.0.0-SNAPSHOT.jar  
+
+FROM openjdk:8-jdk-alpine
 EXPOSE 8089
-RUN chmod 777 achat-1.0.0-SNAPSHOT.jar 
-CMD ["java","-jar","achat-1.0.0-SNAPSHOT.jar"]
+ADD target/achat-1.0.0-SNAPSHOT.jar achat-1.0.0-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","achat-1.0.0-SNAPSHOT.jar"]
