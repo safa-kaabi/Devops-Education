@@ -9,7 +9,7 @@ pipeline {
         stage ('GIT') {
             steps {
                echo "Getting Project from Git"; 
-                git branch: "shili", url: "https://github.com/DevopsTeamGroupe2/devops_project_2";
+                git branch: "NegraMed2", url: "https://github.com/safa-kaabi/Devops-Education.git";
             }
         }
         stage('Unit Testing : Test Dynamique Junit and  Mockito'){
