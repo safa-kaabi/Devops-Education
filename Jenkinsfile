@@ -63,11 +63,6 @@ pipeline {
                 sh "sudo docker compose down";
             }
         }*/
-        stage("Send Email ") {
-            steps {
-                emailext body: '$DEFAULT_CONTENT', recipientProviders: '$DEFAULT_RECIPIENTS', subject: '$DEFAULT_SUBJECT'
-            }
-        }
     }
     post {
         always {
