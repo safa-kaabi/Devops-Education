@@ -2,7 +2,7 @@ pipeline {
 
     agent { label 'maven' }
     environment{ 
-        DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+        DOCKERHUB_CREDENTIALS=credentials('docker')
     }
 
     stages {
@@ -35,33 +35,19 @@ pipeline {
                 sh "sudo docker build -t safakaabi/tpachat .";
             }
         }
-
-        stage("Push Docker image to nexus Private Repo") {
-            steps {
-                sh "sudo docker login -u admin -p nexus 192.168.1.220:8082/repository/docker-hosted-validation";
-                sh "sudo docker tag safakaabi/tpachat 192.168.1.220:8082/docker-hosted-validation/validation";
-                sh "sudo docker push 192.168.1.220:8082/docker-hosted-validation/validation";
-            }
-        }
         
         stage('Deploy Artifact to Nexus') {
             steps {
                 sh 'mvn deploy -Dmaven.test.skip=true -Pprod'
             }
         }
-
-        stage("Build Docker image from nexus repo") {
-            steps {
-                sh "sudo docker pull 192.168.1.220:8082/docker-hosted-validation/validation";
-            }
-        }
         
-        /*stage('Deploy Image to DockerHub') {
+        stage('Deploy Image to DockerHub') {
             steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin';
+		sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin';
                 sh 'sudo docker push safakaabi/tpachat';
             }
-        }*/
+        }
 
         stage("Start Containers : with docker compose") {
             steps {
