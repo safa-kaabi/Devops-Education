@@ -51,9 +51,10 @@ pipeline {
 
         stage("Start Containers : with docker compose") {
             steps {
+		sh "sudo docker stop mysqldb tpachat";
+		sh "sudo docker rm mysqldb tpachat";
                 sh "sudo docker compose up -d";
             	sh "sudo docker ps";
-		sh "sudo docker ps -a";
 	    }
         }
 
