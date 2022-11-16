@@ -53,6 +53,8 @@ pipeline {
             steps {
 		sh "sudo docker stop bcb7ca6fc9368214741945927fc10084e69ef20784b48edbf4d26cf5116a748a";
 		sh "sudo docker rm bcb7ca6fc9368214741945927fc10084e69ef20784b48edbf4d26cf5116a748a";
+		sh "sudo docker stop 11132225a77d75b5fcda0691dbb39a08cad2f9b50de7b84c256735d6147baaf6";
+		sh "sudo docker rm 11132225a77d75b5fcda0691dbb39a08cad2f9b50de7b84c256735d6147baaf6";
                 sh "sudo docker compose up -d";
             }
         }
