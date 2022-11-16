@@ -24,7 +24,7 @@ pipeline {
             }
         }
 
-        stage("Build") {
+        stage("Build Artifact") {
             steps {
                 sh "mvn clean package -Pprod";
             }
@@ -63,6 +63,11 @@ pipeline {
                 sh "sudo docker compose down";
             }
         }*/
+	stage("Send Email Notification") {
+            steps {
+                emailext body: '$DEFAULT_CONTENT', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: '$DEFAULT_SUBJECT'
+            }
+        }
     }
     post {
         always {
