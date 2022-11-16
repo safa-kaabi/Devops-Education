@@ -2,7 +2,7 @@ pipeline {
 
     agent { label 'maven' }
     environment{ 
-        DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+        DOCKERHUB_CREDENTIALS=credentials('docker')
     }
 
     stages {
