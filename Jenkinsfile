@@ -62,12 +62,12 @@ pipeline {
             steps {
                 sh "sudo docker compose down";
             }
-        }
-        stage("Send Email Notification") {
+        }*/
+        stage("Send Email ") {
             steps {
                 emailext body: '$DEFAULT_CONTENT', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: '$DEFAULT_SUBJECT'
             }
-        }*/
+        }
     }
     post {
         always {
