@@ -52,7 +52,9 @@ pipeline {
         stage("Start Containers : with docker compose") {
             steps {
                 sh "sudo docker compose up -d";
-            }
+            	sh "sudo docker ps";
+		sh "sudo docker ps -a";
+	    }
         }
 
         /*stage("docker compose down") {
