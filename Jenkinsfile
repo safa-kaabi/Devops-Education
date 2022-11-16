@@ -12,31 +12,31 @@ pipeline {
                 git branch: "safa_branch", url: "https://github.com/safa-kaabi/Devops-Education.git";
             }
         }
-        stage('Unit Testing : Test Dynamique '){
+        stage(' JUNIT Mochito '){
             steps {
                 sh "mvn clean test -Ptest";
             }
         }
 
-        stage("SRC Analysis : Test Statique Sonar") {
+        stage("Sonar") {
             steps {
                 sh 'mvn sonar:sonar -Dsonar.login="admin" -Dsonar.password="sonar" -Ptest'
             }
         }
 
-        stage("Build Artifact") {
+        stage("Build") {
             steps {
                 sh "mvn clean package -Pprod";
             }
         }
 
-        stage("Build Docker image") {
+        stage("Docker image") {
             steps {
                 sh "sudo docker build -t safakaabi/tpachat .";
             }
         }
         
-        stage('Deploy Artifact to Nexus') {
+        stage('Nexus') {
             steps {
                 sh 'mvn deploy -Dmaven.test.skip=true -Pprod'
             }
@@ -49,7 +49,7 @@ pipeline {
             }
         }*/
 
-        stage("Start Containers : with docker compose") {
+        stage("Docker compose") {
             steps {
 		sh "sudo docker stop mysqldb tpachat";
 		sh "sudo docker rm mysqldb tpachat";
