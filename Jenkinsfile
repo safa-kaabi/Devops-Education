@@ -38,7 +38,7 @@ pipeline {
                 sh 'mvn deploy -DskipTests'
       }
     }
-*/
+
     stage('EMAIL ALERT') {
         steps{
            emailext body: 'your pipeline was successfully built ! everything is good  ', subject: 'build done', to: 'mayssa.chaouali@esprit.tn'
@@ -55,14 +55,14 @@ pipeline {
                  sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
                  sh 'docker push mayssachaouali/achat'
                  }
-	}
-		/*stage('Run Docker-compose') {
+	}*/
+		stage('Run Docker-compose') {
                 steps {
                   	sh "docker-compose up -d"
-                  	echo "wassim"
+                  	echo "mayssa"
             	}
-        }*/
-//
+        }
+
 	
       
     }
