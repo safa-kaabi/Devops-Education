@@ -32,14 +32,14 @@ pipeline {
 
         stage("Build Docker image") {
             steps {
-                sh "sudo docker build -t SafaKaabi/tpachat .";
+                sh "sudo docker build -t safaKaabi/tpachat .";
             }
         }
 
         stage("Push Docker image to nexus Private Repo") {
             steps {
                 sh "sudo docker login -u admin -p nexus 192.168.1.220:8082/repository/docker-hosted-validation";
-                sh "sudo docker tag SafaKaabi/tpachat 192.168.1.220:8082/docker-hosted-validation/validation";
+                sh "sudo docker tag safaKaabi/tpachat 192.168.1.220:8082/docker-hosted-validation/validation";
                 sh "sudo docker push 192.168.1.220:8082/docker-hosted-validation/validation";
             }
         }
@@ -59,7 +59,7 @@ pipeline {
         /*stage('Deploy Image to DockerHub') {
             steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin';
-                sh 'sudo docker push SafaKaabi/tpachat';
+                sh 'sudo docker push safaKaabi/tpachat';
             }
         }*/
 
