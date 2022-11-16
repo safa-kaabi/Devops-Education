@@ -1,37 +1,40 @@
-package tn.esprit.rh.achat;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+package com.esprit.examen.services;
+
+import com.esprit.examen.entities.Stock;
+import com.esprit.examen.repositories.StockRepository;
+import com.esprit.examen.services.IStockService;
+import com.esprit.examen.services.StockServiceImpl;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import lombok.extern.slf4j.Slf4j;
-import tn.esprit.rh.achat.entities.Stock;
-import tn.esprit.rh.achat.repositories.StockRepository;
-import tn.esprit.rh.achat.services.IStockService;
-import tn.esprit.rh.achat.services.StockServiceImpl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 import java.util.Optional;
 
-@RunWith(SpringRunner.class)
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Slf4j
 public class TestStock {
     @Mock
     StockRepository stockRepository;
     @InjectMocks
-    StockServiceImpl stockServiceImpl;
+    StockServiceImpl iStockService;
     @Autowired
     IStockService stockService;
 
-    Stock s = new Stock("stock test",10,100);
+    Stock stock1 = new Stock("stock test",10,100);
 
     //JUNIT
 
