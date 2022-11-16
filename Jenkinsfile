@@ -49,11 +49,11 @@ pipeline {
                 sh "sudo docker build -t negramed0011/tpachat .";
             }
         }
-	    /*
+	    
         stage('Deploy Image to DockerHub') {
             steps {
 		sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin';
-                sh 'sudo docker push negramed0011/tpachat';
+                sh 'sudo docker push negramed0011/tpachat:firstimage';
             }
         }
     /*
