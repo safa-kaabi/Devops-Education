@@ -12,6 +12,14 @@ pipeline {
                 git branch: "safa_branch", url: "https://github.com/safa-kaabi/Devops-Education.git";
             }
         }
+    	stage('Build') {
+            steps {
+                sh "mvn clean -Pprod"
+                sh "mvn compile -Pprod"
+                sh "mvn package -Pprod"
+                // sh "mvn test"
+            }
+        }
         stage('Unit Testing'){
             steps {
                 sh "mvn clean test -Ptest";
@@ -63,12 +71,12 @@ pipeline {
                 sh "sudo docker compose down";
             }
         }*/
-	/*stage("Send Email Notification") {
+	stage("Send Email Notification") {
             steps {
                 emailext body: '$DEFAULT_CONTENT', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: '$DEFAULT_SUBJECT'
             }
         }
-    }*/
+    }
     post {
         always {
 	     cleanWs()
