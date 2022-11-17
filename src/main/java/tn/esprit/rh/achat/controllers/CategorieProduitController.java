@@ -24,7 +24,7 @@ public class CategorieProduitController {
 	@Autowired
 	ICategorieProduitService categorieProduitService;
 	
-	// http://localhost:8089/SpringMVC/categorieProduit/retrieve-all-categorieProduit
+	
 	@GetMapping("/retrieve-all-categorieProduit")
 	@ResponseBody
 	public List<CategorieProduit> getCategorieProduit() {
@@ -32,33 +32,32 @@ public class CategorieProduitController {
 		return list;
 	}
 
-	// http://localhost:8089/SpringMVC/categorieProduit/retrieve-categorieProduit/8
+	
 	@GetMapping("/retrieve-categorieProduit/{categorieProduit-id}")
 	@ResponseBody
 	public CategorieProduit retrieveCategorieProduit(@PathVariable("categorieProduit-id") Long categorieProduitId) {
 		return categorieProduitService.retrieveCategorieProduit(categorieProduitId);
 	}
 
-	// http://localhost:8089/SpringMVC/categorieProduit/add-categorieProduit
+	
 	@PostMapping("/add-categorieProduit")
 	@ResponseBody
-	public CategorieProduit addCategorieProduit(@RequestBody CategorieRequestModel  categorieRequestModel ) {
+	public CategorieProduit addCategorieProduit(@RequestBody CategorieRequestModel  categorieWalidModel ) {
 		CategorieProduit cat = new CategorieProduit();
-		cat.setCodeCategorie(categorieRequestModel.getCodeCategorie());
-		cat.setLibelleCategorie(categorieRequestModel.getLibelleCategorie());
+		cat.setCodeCategorie(categorieWalidModel.getCodeCategorie());
+		cat.setLibelleCategorie(categorieWalidModel.getLibelleCategorie());
 		categorieProduitService.addCategorieProduit(cat);
-		CategorieProduit categorieProduit = categorieProduitService.addCategorieProduit(cat);
-		return categorieProduit;
+		return categorieProduitService.addCategorieProduit(cat);
 	}
 
-	// http://localhost:8089/SpringMVC/categorieProduit/remove-categorieProduit/{categorieProduit-id}
+
 	@DeleteMapping("/remove-categorieProduit/{categorieProduit-id}")
 	@ResponseBody
 	public void removeCategorieProduit(@PathVariable("categorieProduit-id") Long categorieProduitId) {
 		categorieProduitService.deleteCategorieProduit(categorieProduitId);
 	}
 
-	// http://localhost:8089/SpringMVC/categorieProduit/modify-categorieProduit
+	
 	@PutMapping("/modify-categorieProduit")
 	@ResponseBody
 	public CategorieProduit modifyCategorieProduit(@RequestBody CategorieRequestModel  categorieRequestModel) {
@@ -83,3 +82,4 @@ class CategorieRequestModel {
 	@JsonIgnore
 	private Set<Produit> produits;
 }
+
