@@ -55,6 +55,7 @@ pipeline {
                  sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
                  sh 'docker push mayssachaouali/achat'
                  }
+        }
 	
 		stage('Run Docker-compose') {
                 steps {
@@ -68,4 +69,3 @@ pipeline {
     }
 }
 
-}
