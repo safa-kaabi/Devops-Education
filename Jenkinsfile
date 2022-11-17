@@ -1,31 +1,44 @@
-pipeline { 
-    agent any 
-    options {
+pipeline{
+    agent any
+     options {
         skipStagesAfterUnstable()
     }
     environment {
         DOCKERHUB_CREDENTIALS=credentials('dockerHUBServ')
     }
+    tools {
+        maven 'M2_HOME'
+    }
     stages {
-        stage(' GIT ') {
+        
+        
+      stage(' GIT ') {
             steps {
                 echo 'Pulliing ...';
                 git branch: 'mayssaBranch', url: 'https://github.com/safa-kaabi/Devops-Education.git'          
             }
         }
-        stage('Build') { 
-            steps { 
-                sh 'mvn -version'
-		sh 'mvn clean package' 
+        stage('CLEANING THE PROJECT') {
+            steps{
+                sh "mvn -B -DskipTests clean  " 
             }
         }
-        stage ("Launching unit tests"){
- 			steps{
- 			    echo 'Testing..'
- 				sh "mvn test"
- 			}
- 			
- 			}
+        stage('ARTIFACT CONSTRUCTION') {
+            steps{
+                sh "mvn -B -DskipTests package " 
+            }
+        }
+               stage ('JUnit TEST') {
+steps {
+echo "Maven Test JUnit";
+/*sh 'mvn test';*/
+}
+}
+stage('compile project') {
+             steps {
+                sh 'mvn compile -DskipTests'
+      }
+        }
         stage('Sonar') {
              steps {
          	withSonarQubeEnv('sonarQubeServ') { 
@@ -38,13 +51,12 @@ pipeline {
                 sh 'mvn deploy -DskipTests'
       }
     }
-
     stage('EMAIL ALERT') {
         steps{
            emailext body: 'your pipeline was successfully built ! everything is good  ', subject: 'build done', to: 'mayssa.chaouali@esprit.tn'
         }
     }
-     		stage('Building Docker Image'){
+	     stage('Building Docker Image'){
  			  steps {
                       sh 'docker build -t mayssachaouali/achat .'
                }
@@ -57,15 +69,13 @@ pipeline {
                  }
         }
 	
-		stage('Run Docker-compose') {
-                steps {
-                  	sh "docker-compose up -d"
-                  	echo "mayssa"
-            	}
+	    stage('Start container') {
+             steps {
+                sh 'docker-compose -v'
+                sh 'docker-compose up -d '
+                sh 'docker-compose ps'
+      }
         }
-
-	
-      
     }
+   
 }
-
