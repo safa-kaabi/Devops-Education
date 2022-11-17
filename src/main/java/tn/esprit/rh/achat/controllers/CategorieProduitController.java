@@ -28,8 +28,8 @@ public class CategorieProduitController {
 	@GetMapping("/retrieve-all-categorieProduit")
 	@ResponseBody
         public List<CategorieProduit> getCategorieProduit() {
-		return categorieProduitService.retrieveAllCategorieProduits();
-
+		return categorieProduitService.retrieveAllCategorieProduits() ; 
+	}
 	
 	@GetMapping("/retrieve-categorieProduit/{categorieProduit-id}")
 	@ResponseBody
@@ -80,4 +80,3 @@ class CategorieRequestModel {
 	@JsonIgnore
 	private Set<Produit> produits;
 }
-
