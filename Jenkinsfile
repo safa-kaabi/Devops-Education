@@ -46,11 +46,11 @@ stage('compile project') {
     	 	}
              }
         }
-     stage ('Nexus') {
+     /*stage ('Nexus') {
             steps {
                 sh 'mvn deploy -DskipTests'
       }
-    }
+    }*/
     stage('EMAIL ALERT') {
         steps{
            emailext body: 'your pipeline was successfully built ! everything is good  ', subject: 'build done', to: 'mayssa.chaouali@esprit.tn'
