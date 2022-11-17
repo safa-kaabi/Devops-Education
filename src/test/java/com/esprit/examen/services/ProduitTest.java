@@ -1,4 +1,4 @@
-package com.esprit.examen.services;
+/*package com.esprit.examen.services;
 
 
 import com.esprit.examen.entities.Produit;
@@ -55,5 +55,5 @@ public class ProduitTest {
         assertNotNull(p);
         log.info("get prod" + p.toString());
     }
-}
+}*/
 
