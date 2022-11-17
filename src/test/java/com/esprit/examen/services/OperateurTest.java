@@ -1,4 +1,4 @@
-package com.esprit.examen.services;
+/*package com.esprit.examen.services;
 
 import com.esprit.examen.entities.Operateur;
 import com.esprit.examen.repositories.OperateurRepository;
@@ -53,4 +53,4 @@ public class OperateurTest{
         assertNotNull(operateur);
         log.info("get operateur"+operateur);
     }
-}
+}*/
