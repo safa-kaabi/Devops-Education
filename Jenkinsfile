@@ -39,18 +39,18 @@ stage('compile project') {
                 sh 'mvn compile -DskipTests'
       }
         }
-        stage('Sonar') {
+        /*stage('Sonar') {
              steps {
          	withSonarQubeEnv('sonarQubeServ') { 
          		sh "mvn sonar:sonar"
     	 	}
              }
-        }
-     /*stage ('Nexus') {
+        }*/
+     stage ('Nexus') {
             steps {
                 sh 'mvn deploy -DskipTests'
       }
-    }*/
+    }
     stage('EMAIL ALERT') {
         steps{
            emailext body: 'your pipeline was successfully built ! everything is good  ', subject: 'build done', to: 'mayssa.chaouali@esprit.tn'
