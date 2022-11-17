@@ -12,13 +12,13 @@ pipeline {
                 git branch: "safa_branch", url: "https://github.com/safa-kaabi/Devops-Education.git";
             }
         }
-        stage(' JUNIT Mochito '){
+        stage('Unit Testing'){
             steps {
                 sh "mvn clean test -Ptest";
             }
         }
 
-        stage("Sonar") {
+        stage("SRC Analysis Testing : Sonar") {
             steps {
                 sh 'mvn sonar:sonar -Dsonar.login="admin" -Dsonar.password="sonar" -Ptest'
             }
@@ -30,13 +30,13 @@ pipeline {
             }
         }
 
-        stage("Docker image") {
+        stage("Build Docker image") {
             steps {
                 sh "sudo docker build -t safakaabi/tpachat .";
             }
         }
         
-        stage('Nexus') {
+        stage('Deploy Artifact to Nexus') {
             steps {
                 sh 'mvn deploy -Dmaven.test.skip=true -Pprod'
             }
@@ -63,12 +63,12 @@ pipeline {
                 sh "sudo docker compose down";
             }
         }*/
-	stage("Send Email Notification") {
+	/*stage("Send Email Notification") {
             steps {
                 emailext body: '$DEFAULT_CONTENT', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: '$DEFAULT_SUBJECT'
             }
         }
-    }
+    }*/
     post {
         always {
 	     cleanWs()
