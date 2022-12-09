@@ -12,12 +12,10 @@ pipeline {
                 git branch: "safa_branch", url: "https://github.com/safa-kaabi/Devops-Education.git";
             }
         }
-    	stage('Build') {
+    	stage('Compile') {
             steps {
                 sh "mvn clean -Pprod"
                 sh "mvn compile -Pprod"
-                sh "mvn package -Pprod"
-                // sh "mvn test"
             }
         }
         stage('Unit Testing'){
@@ -50,19 +48,18 @@ pipeline {
             }
         }
         
-        /*stage('Deploy Image to DockerHub') {
+        stage('Deploy Image to DockerHub') {
             steps {
 		sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin';
                 sh 'sudo docker push safakaabi/tpachat';
             }
-        }*/
+        }
 
         stage("Docker compose") {
             steps {
 		//sh "sudo docker stop mysqldb tpachat";
 		//sh "sudo docker rm mysqldb tpachat";
                 sh "sudo docker compose up -d";
-            	sh "sudo docker ps";
 	    }
         }
 
